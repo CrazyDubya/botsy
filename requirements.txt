@@ -1,0 +1,48 @@
+# Core dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+pandas>=2.0.0
+numpy>=1.24.0
+python-dotenv>=1.0.0
+schedule>=1.2.0
+
+# News & Media
+feedparser>=6.0.0
+newspaper3k>=0.2.8
+
+# Research & Academia
+arxiv>=1.4.0
+scholarly>=1.7.0
+
+# Finance & Markets
+yfinance>=0.2.0
+alpha-vantage>=2.3.0
+
+# Technology & Software
+PyGithub>=1.59.0
+requests-html>=0.10.0
+
+# Social Media
+tweepy>=4.14.0
+praw>=7.7.0
+
+# Government & Legal
+requests-cache>=1.1.0
+
+# Weather & Environment
+pyowm>=3.3.0
+
+# Sports & Entertainment
+espn-api>=0.3.0
+
+# E-commerce & Reviews
+selenium>=4.11.0
+
+# Health & Medical
+biopython>=1.81
+
+# Utilities
+python-dateutil>=2.8.0
+pytz>=2023.3
+colorama>=0.4.6
+tqdm>=4.65.0
