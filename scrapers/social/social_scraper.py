@@ -70,14 +70,60 @@ class SocialScraper(BaseScraper):
     def get_available_tools(self) -> Dict[str, str]:
         """Return available tools for social media scraping."""
         return {
-            'Reddit JSON API': 'Free public posts without authentication',
-            'Reddit API': 'Free tier: 100 requests/minute with auth',
-            'Twitter API v2': 'Free tier: 500K tweets/month (Essential)',
-            'YouTube API': 'Free tier: 10K requests/day',
-            'Instagram Basic Display': 'Free for personal use',
-            'Mastodon API': 'Free and open source',
-            'LinkedIn API': 'Limited free tier',
-            'Discord API': 'Free for bot development'
+            # Free APIs - No authentication
+            'Reddit JSON API': 'Free public posts without authentication (rate limited)',
+            'Mastodon API': 'Free and open source social network API',
+            
+            # Free APIs - Authentication required
+            'Reddit API (OAuth)': 'Free tier: 100 requests/minute with authentication',
+            'Twitter API v2': 'Free tier: 500K tweets/month (Essential access)',
+            'YouTube API': 'Free tier: 10K requests/day for video metadata',
+            'Instagram Basic Display': 'Free for personal use (limited)',
+            'LinkedIn API': 'Limited free tier for basic profile data',
+            'Discord API': 'Free for bot development (rate limited)',
+            'Telegram Bot API': 'Free for bot interactions (rate limited)',
+            'Pinterest API': 'Free tier: 1000 requests/hour',
+            
+            # Specialized Python libraries & scrapers
+            'praw': 'Reddit API wrapper (github: praw-dev/praw)',
+            'tweepy': 'Twitter API wrapper (github: tweepy/tweepy)',
+            'instaloader': 'Instagram scraper (github: instaloader/instaloader)',
+            'youtube-dl': 'Video downloader (github: ytdl-org/youtube-dl)',
+            'yt-dlp': 'Enhanced youtube-dl fork (github: yt-dlp/yt-dlp)',
+            'social-media-scraper': 'Multi-platform scraper (github: arc298/social-media-scraper)',
+            'tiktok-scraper': 'TikTok content scraper',
+            'linkedin-scraper': 'LinkedIn profile scraper',
+            'facebook-scraper': 'Facebook public posts scraper',
+            
+            # Premium/Paid options
+            'Twitter API Pro': 'Paid tier: $100/month for 1M tweets',
+            'Brandwatch': 'Enterprise: $800+/month for social listening',
+            'Hootsuite Insights': 'Paid: $49+/month for analytics',
+            'Sprout Social': 'Paid: $99+/month for management and analytics',
+            'Mention': 'Paid: $25+/month for social monitoring',
+            'Socialbakers': 'Enterprise social media analytics',
+            
+            # Web scraping targets
+            'TikTok Public Data': 'Public posts and trends (web scraping)',
+            'Facebook Public Pages': 'Public page content (limited)',
+            'Instagram Public Profiles': 'Public posts and hashtags',
+            'LinkedIn Public Profiles': 'Public professional data',
+            'Snapchat Discover': 'Public discover content',
+            'Clubhouse': 'Audio social network (limited data)',
+            
+            # Alternative platforms
+            'Parler': 'Conservative social platform',
+            'Gab': 'Free speech social platform',
+            'Truth Social': 'Trump-affiliated platform',
+            'Gettr': 'Free speech platform',
+            'MeWe': 'Privacy-focused social network',
+            'Minds': 'Open source social network',
+            
+            # Analytics and monitoring
+            'Social Mention': 'Free social media search engine',
+            'Tweetdeck': 'Twitter management (limited free)',
+            'Buffer': 'Social media scheduling (limited free)',
+            'Later': 'Instagram scheduling (limited free)'
         }
 
 if __name__ == "__main__":

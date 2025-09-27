@@ -143,17 +143,81 @@ class FinanceScraper(BaseScraper):
         
         return all_data
     
+    def scrape_iex_cloud(self, symbol: str) -> Dict:
+        """Scrape using IEX Cloud API (500K requests/month free)."""
+        # Placeholder for IEX Cloud implementation
+        try:
+            self.logger.info(f"Scraping IEX Cloud for: {symbol}")
+            return {
+                'symbol': symbol,
+                'source': 'IEX Cloud',
+                'note': 'Requires IEX Cloud API key - 500K requests/month free',
+                'scraped_at': datetime.now().isoformat()
+            }
+        except Exception as e:
+            self.logger.error(f"Error scraping IEX Cloud: {e}")
+            return {}
+    
+    def scrape_polygon_io(self, symbol: str) -> Dict:
+        """Scrape using Polygon.io API (5 requests/minute free)."""
+        # Placeholder for Polygon.io implementation
+        try:
+            self.logger.info(f"Scraping Polygon.io for: {symbol}")
+            return {
+                'symbol': symbol,
+                'source': 'Polygon.io',
+                'note': 'Requires Polygon.io API key - 5 requests/minute free',
+                'scraped_at': datetime.now().isoformat()
+            }
+        except Exception as e:
+            self.logger.error(f"Error scraping Polygon.io: {e}")
+            return {}
+
     def get_available_tools(self) -> Dict[str, str]:
         """Return available tools for finance scraping."""
         return {
-            'yfinance': 'Free Python library for Yahoo Finance data',
-            'Alpha Vantage': 'Free tier: 5 calls/minute, 500 calls/day',
+            # Free APIs - No key required
+            'yfinance': 'Unlimited Yahoo Finance data via Python wrapper',
             'Yahoo Finance RSS': 'Free financial news RSS feeds',
-            'SEC EDGAR': 'Free access to SEC filings and reports',
-            'Federal Reserve Economic Data (FRED)': 'Free economic data API',
-            'Quandl': 'Free tier available for financial datasets',
-            'IEX Cloud': 'Free tier with 500K requests/month',
-            'Polygon.io': 'Free tier with delayed market data'
+            'FRED API': 'Federal Reserve economic data - unlimited with key',
+            'World Bank API': 'Global economic indicators - completely free',
+            
+            # Free APIs - Key required with generous limits
+            'Alpha Vantage': 'Free tier: 500 calls/day, stock/forex/crypto data',
+            'IEX Cloud': 'Free tier: 500K requests/month for market data',
+            'Polygon.io': 'Free tier: 5 requests/minute for real-time data',
+            'Finnhub': 'Free tier: 60 requests/minute for stock data',
+            'Twelve Data': 'Free tier: 800 requests/day for market data',
+            'Quandl': 'Free tier: 50 requests/day for financial datasets',
+            
+            # Specialized Python libraries
+            'pandas-datareader': 'Multiple financial data sources wrapper',
+            'ccxt': 'Cryptocurrency exchange APIs (github: ccxt/ccxt)',
+            'zipline': 'Algorithmic trading library (github: quantopian/zipline)',
+            'backtrader': 'Trading strategy backtesting (github: mementum/backtrader)',
+            'fredapi': 'FRED data access library (github: mortada/fredapi)',
+            'investpy': 'Historical market data (github: alvarobartt/investpy)',
+            'financetoolkit': 'Financial analysis toolkit (github: JerBouma/FinanceToolkit)',
+            
+            # Premium/Enterprise options
+            'Alpha Vantage Premium': 'Paid tiers: $50-600/month for higher limits',
+            'IEX Cloud Pro': 'Paid tiers: $9-99/month for enhanced data',
+            'Polygon.io Premium': 'Paid tiers: $99-399/month for real-time data',
+            'Bloomberg API': 'Enterprise: $2000+/month for professional data',
+            'Refinitiv (Reuters)': 'Enterprise: $1500+/month for real-time market data',
+            'Quandl Premium': 'Paid tiers: $50-500/month for premium datasets',
+            
+            # Alternative free sources
+            'SEC EDGAR': 'Free access to SEC filings and financial reports',
+            'Yahoo Finance Scraping': 'Web scraping fallback for Yahoo Finance',
+            'Google Finance': 'Limited data via web scraping',
+            'Morningstar': 'Some free data available via web scraping',
+            
+            # Cryptocurrency specific
+            'CoinGecko API': 'Free cryptocurrency market data',
+            'CoinMarketCap API': 'Free tier for crypto data',
+            'Binance API': 'Free exchange data',
+            'Coinbase API': 'Free market data access'
         }
 
 if __name__ == "__main__":

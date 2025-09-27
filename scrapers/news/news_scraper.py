@@ -104,14 +104,77 @@ class NewsScraper(BaseScraper):
         
         return all_articles
     
+    def scrape_gnews(self, query: str = "technology", max_results: int = 10) -> List[Dict]:
+        """Scrape Google News using GNews API (alternative free option)."""
+        try:
+            # This would use python-gnews library in practice
+            self.logger.info(f"Scraping Google News for: {query}")
+            # Placeholder for GNews implementation
+            return [{
+                'title': f'Sample Google News article about {query}',
+                'source': 'GNews API',
+                'scraped_at': datetime.now().isoformat(),
+                'note': 'Requires python-gnews library'
+            }]
+        except Exception as e:
+            self.logger.error(f"Error scraping GNews: {e}")
+            return []
+    
+    def scrape_guardian_api(self) -> List[Dict]:
+        """Scrape using Guardian Open Platform API (5000 requests/day free)."""
+        try:
+            # Guardian API endpoint - requires API key
+            # This is a placeholder implementation
+            self.logger.info("Scraping Guardian Open Platform")
+            return [{
+                'title': 'Sample Guardian article',
+                'source': 'Guardian API',
+                'scraped_at': datetime.now().isoformat(),
+                'note': 'Requires Guardian API key - 5000 requests/day free'
+            }]
+        except Exception as e:
+            self.logger.error(f"Error scraping Guardian API: {e}")
+            return []
+
     def get_available_tools(self) -> Dict[str, str]:
         """Return available tools for news scraping."""
         return {
-            'RSS Feeds': 'Free RSS feeds from major news sources (Reuters, BBC, TechCrunch)',
+            # Free APIs with limits
             'NewsAPI': 'Free tier: 1000 requests/month for top headlines',
+            'GNews API': 'Free tier: 100 requests/day for Google News',
+            'Guardian Open Platform': 'Free tier: 5000 requests/day for Guardian content',
+            'NYTimes API': 'Free tier: 1000 requests/day for article search',
+            'Currents API': 'Free tier: 600 requests/month for breaking news',
+            'Mediastack API': 'Free tier: 1000 requests/month for real-time news',
+            
+            # Completely free options
+            'RSS Feeds': 'Unlimited access to publisher RSS feeds',
             'Feedparser': 'Python library for parsing RSS and Atom feeds',
+            
+            # Web scraping libraries
             'Newspaper3k': 'Article extraction and curation library',
-            'Beautiful Soup': 'Web scraping for custom news sites'
+            'News-please': 'Advanced news crawler (github: fhamborg/news-please)',
+            'Scrapy-news': 'Scrapy-based news scraper framework',
+            'Beautiful Soup': 'HTML parsing for custom news sites',
+            'Trafilatura': 'Web content extraction optimized for news',
+            
+            # Premium options
+            'NewsAPI Pro': 'Premium tier: $449/month for 1M requests',
+            'Bloomberg Terminal API': 'Enterprise: $2000+/month for financial news',
+            'Reuters News API': 'Enterprise: Custom pricing for Reuters feed',
+            'Associated Press API': 'Enterprise: Custom pricing for AP newswire',
+            
+            # Specialized scrapers from repositories
+            'AllSides News Scraper': 'Political bias analysis (github: philipkiely/allsides-news-scraper)',
+            'MediaBias Scraper': 'Media bias detection (github: drr00t/media-bias-scraper)',
+            'Multi-source News Scraper': 'Aggregated scraping (github: news-scrapers/multi-source)',
+            
+            # RSS & Free Subscriptions
+            'BBC RSS Feeds': '20+ category feeds available',
+            'Reuters RSS': '25+ topic-specific feeds',
+            'AP News RSS': '15+ section feeds',
+            'CNN RSS': '20+ category feeds',
+            'NPR RSS': '30+ program-specific feeds'
         }
 
 if __name__ == "__main__":

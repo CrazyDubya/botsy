@@ -155,23 +155,134 @@ class TechnologyScraper(BaseScraper):
         rss_data = self.scrape_tech_rss()
         all_data.extend(rss_data)
         
+        # Stack Overflow questions
+        so_data = self.scrape_stackoverflow("python")
+        all_data.extend(so_data)
+        
+        # Product Hunt (placeholder)
+        ph_data = self.scrape_product_hunt()
+        all_data.extend(ph_data)
+        
         # Save data
         if all_data:
             self.save_data(all_data, f"tech_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
         
         return all_data
     
+    def scrape_stackoverflow(self, tag: str = "python") -> List[Dict]:
+        """Scrape Stack Overflow questions using their API."""
+        try:
+            self.logger.info(f"Scraping Stack Overflow for tag: {tag}")
+            # Stack Overflow API endpoint
+            url = "https://api.stackexchange.com/2.3/questions"
+            params = {
+                'order': 'desc',
+                'sort': 'activity',
+                'tagged': tag,
+                'site': 'stackoverflow',
+                'pagesize': 10
+            }
+            
+            response = self.make_request(url, params)
+            data = response.json()
+            
+            questions = []
+            for item in data.get('items', []):
+                question = {
+                    'title': item.get('title', ''),
+                    'question_id': item.get('question_id', ''),
+                    'score': item.get('score', 0),
+                    'view_count': item.get('view_count', 0),
+                    'answer_count': item.get('answer_count', 0),
+                    'tags': item.get('tags', []),
+                    'creation_date': item.get('creation_date', 0),
+                    'link': item.get('link', ''),
+                    'source': 'Stack Overflow',
+                    'scraped_at': datetime.now().isoformat()
+                }
+                questions.append(question)
+            
+            self.logger.info(f"Scraped {len(questions)} Stack Overflow questions")
+            return questions
+            
+        except Exception as e:
+            self.logger.error(f"Error scraping Stack Overflow: {e}")
+            return []
+    
+    def scrape_product_hunt(self) -> List[Dict]:
+        """Scrape Product Hunt for tech product launches."""
+        try:
+            self.logger.info("Scraping Product Hunt (placeholder)")
+            # Placeholder for Product Hunt API implementation
+            return [{
+                'name': 'Sample Tech Product',
+                'description': 'Innovative technology solution',
+                'votes': 150,
+                'source': 'Product Hunt',
+                'scraped_at': datetime.now().isoformat(),
+                'note': 'Requires Product Hunt API token'
+            }]
+        except Exception as e:
+            self.logger.error(f"Error scraping Product Hunt: {e}")
+            return []
+
     def get_available_tools(self) -> Dict[str, str]:
         """Return available tools for technology scraping."""
         return {
-            'GitHub API': 'Free tier: 60 requests/hour, 5000 with auth',
+            # Free APIs - No authentication
             'Hacker News API': 'Completely free Firebase API for all HN data',
-            'RSS Feeds': 'Free tech news from TechCrunch, The Verge, etc.',
-            'Stack Overflow API': 'Free API for programming questions and answers',
-            'Product Hunt API': 'Free tier for tech product launches',
-            'Dev.to API': 'Free API for developer articles and posts',
-            'Reddit API': 'Free tier for programming and tech subreddits',
-            'GitLab API': 'Free tier for repository and project data'
+            'GitHub Public API': 'Free tier: 60 requests/hour without auth',
+            'NPM API': 'Unlimited access to Node.js package data',
+            'PyPI API': 'Unlimited access to Python package information',
+            'Stack Overflow API': 'Free tier: 10K requests/day with key',
+            
+            # Free APIs - Authentication required
+            'GitHub API (authenticated)': 'Free tier: 5000 requests/hour with token',
+            'GitLab API': 'Free tier: 2000 requests/minute with token',
+            'Product Hunt API': 'Free tier: 1000 requests/hour with token',
+            'Dev.to API': 'Free tier: 1000 requests/hour with token',
+            'Bitbucket API': 'Free tier: 1000 requests/hour with token',
+            
+            # RSS Feeds & Free subscriptions
+            'Tech RSS Feeds': 'TechCrunch, The Verge, Ars Technica, Wired feeds',
+            'GitHub Trending RSS': 'Trending repositories by language',
+            'Dev.to RSS': 'Developer articles and tutorials',
+            'Reddit Tech RSS': 'r/programming, r/technology, r/webdev feeds',
+            
+            # Specialized Python libraries & scrapers
+            'PyGithub': 'GitHub API wrapper (github: PyGithub/PyGithub)',
+            'github-scraper': 'Repository statistics (github: x4nth055/github-scraper)',
+            'stackoverflow-scraper': 'SO data extraction (github: ssut/stackoverflow-scraper)',
+            'hackernews-scraper': 'HN content scraper (github: kylelix7/hackernews-scraper)',
+            'tech-news-scraper': 'Tech news aggregation (github: rushter/tech-news-scraper)',
+            'awesome-scraper': 'GitHub awesome lists scraper',
+            'npm-scraper': 'NPM package analytics scraper',
+            'pypi-scraper': 'Python package statistics scraper',
+            
+            # Premium/Enterprise options
+            'GitHub Enterprise API': 'Paid: $21/user/month for advanced analytics',
+            'GitLab Premium': 'Paid: $19/user/month for enhanced features',
+            'Stack Overflow Teams': 'Paid: $6/user/month for private Q&A',
+            'JetBrains Space': 'Paid: $8/user/month for team collaboration',
+            
+            # Web scraping targets
+            'GitHub Trending': 'Trending repositories (unofficial scraping)',
+            'ProductHunt Unofficial': 'Product launches via web scraping',
+            'AngelList': 'Startup and job data (web scraping)',
+            'Crunchbase': 'Company and funding data (limited free)',
+            'TechStars Directory': 'Startup accelerator data',
+            
+            # Developer community platforms
+            'Dev.to Articles': 'Developer articles and tutorials',
+            'Hashnode API': 'Developer blogging platform',
+            'Medium Tech Publications': 'Technology articles on Medium',
+            'Substack Tech Newsletters': 'Technology-focused newsletters',
+            
+            # Code quality & analysis
+            'Libraries.io': 'Open source library analytics',
+            'SourceRank': 'Library popularity metrics',
+            'GitHub Archive': 'Historical GitHub event data',
+            'Open Source Insights': 'Google\'s open source analysis'
         }
 
 if __name__ == "__main__":

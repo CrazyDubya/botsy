@@ -160,25 +160,163 @@ class ResearchScraper(BaseScraper):
         biorxiv_papers = self.scrape_biorxiv()
         all_papers.extend(biorxiv_papers)
         
+        # Scrape Semantic Scholar for AI research
+        semantic_papers = self.scrape_semantic_scholar("machine learning")
+        all_papers.extend(semantic_papers)
+        
+        # Scrape CrossRef for general research
+        crossref_papers = self.scrape_crossref("computer science")
+        all_papers.extend(crossref_papers)
+        
         # Save data
         if all_papers:
             self.save_data(all_papers, f"research_papers_{datetime.now().strftime('%Y%m%d_%H%M%S')}")
         
         return all_papers
     
+    def scrape_semantic_scholar(self, query: str = "machine learning") -> List[Dict]:
+        """Scrape research papers using Semantic Scholar API."""
+        try:
+            self.logger.info(f"Scraping Semantic Scholar for: {query}")
+            
+            # Semantic Scholar API endpoint
+            url = "https://api.semanticscholar.org/graph/v1/paper/search"
+            params = {
+                'query': query,
+                'limit': 10,
+                'fields': 'title,authors,abstract,year,citationCount,url'
+            }
+            
+            response = self.make_request(url, params)
+            data = response.json()
+            
+            papers = []
+            for paper in data.get('data', []):
+                paper_data = {
+                    'title': paper.get('title', ''),
+                    'authors': [author.get('name', '') for author in paper.get('authors', [])],
+                    'abstract': paper.get('abstract', ''),
+                    'year': paper.get('year', 0),
+                    'citation_count': paper.get('citationCount', 0),
+                    'url': paper.get('url', ''),
+                    'source': 'Semantic Scholar',
+                    'scraped_at': datetime.now().isoformat()
+                }
+                papers.append(paper_data)
+            
+            self.logger.info(f"Scraped {len(papers)} papers from Semantic Scholar")
+            return papers
+            
+        except Exception as e:
+            self.logger.error(f"Error scraping Semantic Scholar: {e}")
+            return []
+    
+    def scrape_crossref(self, query: str = "artificial intelligence") -> List[Dict]:
+        """Scrape academic papers using CrossRef API (completely free)."""
+        try:
+            self.logger.info(f"Scraping CrossRef for: {query}")
+            
+            # CrossRef API endpoint
+            url = "https://api.crossref.org/works"
+            params = {
+                'query': query,
+                'rows': 10,
+                'sort': 'relevance',
+                'order': 'desc'
+            }
+            
+            response = self.make_request(url, params)
+            data = response.json()
+            
+            papers = []
+            for item in data.get('message', {}).get('items', []):
+                paper_data = {
+                    'title': ' '.join(item.get('title', [''])),
+                    'authors': [f"{author.get('given', '')} {author.get('family', '')}" 
+                              for author in item.get('author', [])],
+                    'doi': item.get('DOI', ''),
+                    'published_date': item.get('published-print', {}).get('date-parts', [[]])[0],
+                    'publisher': item.get('publisher', ''),
+                    'citation_count': item.get('is-referenced-by-count', 0),
+                    'source': 'CrossRef',
+                    'scraped_at': datetime.now().isoformat()
+                }
+                papers.append(paper_data)
+            
+            self.logger.info(f"Scraped {len(papers)} papers from CrossRef")
+            return papers
+            
+        except Exception as e:
+            self.logger.error(f"Error scraping CrossRef: {e}")
+            return []
+
     def get_available_tools(self) -> Dict[str, str]:
         """Return available tools for research scraping."""
         return {
-            'arXiv API': 'Free access to 2M+ research papers',
-            'PubMed API': 'Free access to biomedical literature',
-            'bioRxiv API': 'Free access to biological preprints',
+            # Completely free APIs - No authentication
+            'arXiv API': 'Unlimited access to 2M+ preprint papers',
+            'PubMed API': 'Free access to biomedical literature (rate limited)',
+            'bioRxiv API': 'Free access to biology preprints',
             'medRxiv API': 'Free access to medical preprints',
-            'Semantic Scholar API': 'Free tier: 100 requests/minute',
-            'CrossRef API': 'Free access to scholarly metadata',
-            'DOAJ API': 'Free access to open access journals',
+            'CrossRef API': 'Unlimited DOI and citation metadata',
+            'DOAJ API': 'Unlimited access to open access journals',
+            'OpenAlex API': 'Free access to 200M+ scholarly works',
+            
+            # Free APIs - Key required
+            'Semantic Scholar API': 'Free tier: 100 requests/minute for paper search',
+            'Europe PMC API': 'Free access to life science literature',
+            'CORE API': 'Free tier: 1000 requests/day for open access research',
+            
+            # Specialized Python libraries
+            'arxiv': 'arXiv API client (github: lukasschwab/arxiv.py)',
+            'scholarly': 'Google Scholar scraper (github: scholarly-python-package/scholarly)',
+            'biopython': 'Bioinformatics tools (github: biopython/biopython)',
+            'pubmed-parser': 'PubMed XML parser (github: titipata/pubmed_parser)',
+            'crossref-commons': 'CrossRef API wrapper',
+            'semanticscholar': 'Semantic Scholar API wrapper',
+            'academic-scraper': 'Multi-source scraper (github: VincentStimper/academic-scraper)',
+            
+            # Premium/Institutional APIs
+            'Web of Science API': 'Institutional access required for citation indexing',
+            'Scopus API': 'Institutional access required for abstract database',
+            'Dimensions API': 'Custom pricing for research analytics',
+            'IEEE Xplore API': 'Free tier available for IEEE publications',
+            'ACM Digital Library': 'Free access to abstracts, paid for full text',
+            
+            # Web scraping targets
+            'Google Scholar': 'Web scraping (no official API, use scholarly library)',
+            'ResearchGate': 'Web scraping for researcher profiles and papers',
+            'Academia.edu': 'Web scraping for academic papers',
             'SSRN': 'Social Science Research Network (limited free access)',
-            'Google Scholar': 'Web scraping (no official API)',
-            'ResearchGate': 'Web scraping (no official API)'
+            'PhilPapers': 'Philosophy research database',
+            'NBER': 'National Bureau of Economic Research papers',
+            
+            # Specialized academic databases
+            'JSTOR': 'Limited free access, institutional subscriptions',
+            'SpringerLink': 'Some open access content available',
+            'ScienceDirect': 'Elsevier papers (limited free access)',
+            'Wiley Online Library': 'Some open access content',
+            'PLOS ONE': 'Open access scientific journal',
+            'Nature Open Access': 'Free Nature research articles',
+            
+            # Citation and metrics
+            'OpenCitations': 'Free citation data',
+            'Microsoft Academic Graph': 'Academic knowledge graph (deprecated)',
+            'Altmetric API': 'Alternative metrics for research impact',
+            'PlumX Metrics': 'Research metrics and analytics',
+            
+            # Research data repositories
+            'Zenodo API': 'Free research data repository',
+            'Figshare API': 'Free research data sharing',
+            'Dryad API': 'Research data repository',
+            'Harvard Dataverse': 'Research data repository',
+            
+            # Preprint servers
+            'ChemRxiv': 'Chemistry preprints',
+            'PsyArXiv': 'Psychology preprints',
+            'SocArXiv': 'Social science preprints',
+            'EconArXiv': 'Economics preprints',
+            'engrXiv': 'Engineering preprints'
         }
 
 if __name__ == "__main__":
