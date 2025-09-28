@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botsy - Automated Information Scraping Framework</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <h1><i class="fas fa-robot"></i> Botsy</h1>
+                <p>Automated Information Scraping Framework</p>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#categories">Categories</a>
+                <a href="#tools">Tools</a>
+                <a href="#docs">Documentation</a>
+                <a href="https://github.com/CrazyDubya/botsy" target="_blank">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Ten Categories of Information Scraping</h2>
+                <p>A comprehensive framework for automated data collection across diverse domains using the best free tools and APIs.</p>
+                <div class="hero-buttons">
+                    <a href="#categories" class="btn btn-primary">Explore Categories</a>
+                    <a href="https://github.com/CrazyDubya/botsy" class="btn btn-secondary">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Ten Categories</h3>
+                        <p>Organized scraping across news, finance, tech, research, and more</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tools"></i>
+                        <h3>Best Tools</h3>
+                        <p>Carefully selected free APIs and tools for each category</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Python Framework</h3>
+                        <p>Modern, extensible Python codebase with logging and error handling</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-database"></i>
+                        <h3>Data Storage</h3>
+                        <p>Structured JSON output with timestamps and metadata</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>Scheduling</h3>
+                        <p>Built-in scheduling capabilities for automated data collection</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Rate Limiting</h3>
+                        <p>Respectful scraping with built-in delays and retry logic</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="categories" class="categories">
+            <div class="container">
+                <h2>Information Categories</h2>
+                <div class="categories-grid">
+                    <div class="category-card" data-category="news">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>News & Media</h3>
+                        <p>Real-time news aggregation from RSS feeds and 15+ APIs</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">NewsAPI</span>
+                            <span class="tool-tag">GNews</span>
+                            <span class="tool-tag">Guardian API</span>
+                            <span class="tool-tag">15+ Tools</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="finance">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Finance & Markets</h3>
+                        <p>Stock data, crypto, and market analytics from 20+ sources</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">yfinance</span>
+                            <span class="tool-tag">Alpha Vantage</span>
+                            <span class="tool-tag">IEX Cloud</span>
+                            <span class="tool-tag">20+ APIs</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="technology">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Technology & Software</h3>
+                        <p>GitHub trending, tech news, and 25+ developer platforms</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">GitHub API</span>
+                            <span class="tool-tag">Stack Overflow</span>
+                            <span class="tool-tag">Hacker News</span>
+                            <span class="tool-tag">25+ Sources</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="research">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Research & Academia</h3>
+                        <p>Scientific papers from 15+ academic databases and APIs</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">arXiv API</span>
+                            <span class="tool-tag">Semantic Scholar</span>
+                            <span class="tool-tag">CrossRef</span>
+                            <span class="tool-tag">15+ Databases</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="social">
+                        <i class="fas fa-share-alt"></i>
+                        <h3>Social Media</h3>
+                        <p>Social platform monitoring across 20+ networks and APIs</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">Reddit API</span>
+                            <span class="tool-tag">Twitter API</span>
+                            <span class="tool-tag">Instagram</span>
+                            <span class="tool-tag">20+ Platforms</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="weather">
+                        <i class="fas fa-cloud-sun"></i>
+                        <h3>Weather & Environment</h3>
+                        <p>Weather data and environmental monitoring from 10+ APIs</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">OpenWeather</span>
+                            <span class="tool-tag">NOAA API</span>
+                            <span class="tool-tag">WeatherAPI</span>
+                            <span class="tool-tag">10+ Sources</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="government">
+                        <i class="fas fa-university"></i>
+                        <h3>Government & Legal</h3>
+                        <p>Public records and regulatory information from 15+ sources</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">Data.gov</span>
+                            <span class="tool-tag">SEC EDGAR</span>
+                            <span class="tool-tag">Congress API</span>
+                            <span class="tool-tag">15+ Agencies</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="sports">
+                        <i class="fas fa-futbol"></i>
+                        <h3>Sports & Entertainment</h3>
+                        <p>Sports statistics and entertainment from 15+ APIs</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">ESPN API</span>
+                            <span class="tool-tag">NBA API</span>
+                            <span class="tool-tag">TMDb</span>
+                            <span class="tool-tag">15+ Sports APIs</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="ecommerce">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>E-commerce & Reviews</h3>
+                        <p>Product information and reviews from 12+ platforms</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">eBay API</span>
+                            <span class="tool-tag">Amazon APIs</span>
+                            <span class="tool-tag">Shopify</span>
+                            <span class="tool-tag">12+ Platforms</span>
+                        </div>
+                    </div>
+                    <div class="category-card" data-category="health">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Health & Medical</h3>
+                        <p>Health news and medical research from 12+ sources</p>
+                        <div class="category-tools">
+                            <span class="tool-tag">CDC API</span>
+                            <span class="tool-tag">NIH API</span>
+                            <span class="tool-tag">WHO API</span>
+                            <span class="tool-tag">12+ Health APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="tools-section">
+            <div class="container">
+                <h2>Comprehensive Tools & APIs Overview</h2>
+                <div class="tools-summary">
+                    <div class="tool-category">
+                        <h3>Free Tier APIs (200+ Tools)</h3>
+                        <ul>
+                            <li>NewsAPI - 1000 requests/month</li>
+                            <li>Alpha Vantage - 500 calls/day</li>
+                            <li>OpenWeather - 1000 calls/day</li>
+                            <li>GitHub API - 5000/hour with auth</li>
+                            <li>Semantic Scholar - 100 requests/minute</li>
+                            <li>IEX Cloud - 500K requests/month</li>
+                            <li>Stack Overflow - 10K requests/day</li>
+                            <li>And 190+ more documented tools...</li>
+                        </ul>
+                    </div>
+                    <div class="tool-category">
+                        <h3>Completely Free (Unlimited)</h3>
+                        <ul>
+                            <li>RSS Feeds - Unlimited access</li>
+                            <li>arXiv API - Unlimited research papers</li>
+                            <li>Reddit JSON - Rate limited</li>
+                            <li>Data.gov - Unlimited government data</li>
+                            <li>CrossRef - Unlimited citation data</li>
+                            <li>NOAA API - Unlimited weather data</li>
+                            <li>Hacker News - Unlimited tech content</li>
+                            <li>OpenAlex - 200M+ scholarly works</li>
+                        </ul>
+                    </div>
+                    <div class="tool-category">
+                        <h3>Specialized Scrapers (150+ Repos)</h3>
+                        <ul>
+                            <li>newspaper3k - Article extraction</li>
+                            <li>Scrapy - Web crawling framework</li>
+                            <li>ccxt - 100+ crypto exchanges</li>
+                            <li>scholarly - Google Scholar scraper</li>
+                            <li>instaloader - Instagram scraper</li>
+                            <li>nba-api - NBA statistics</li>
+                            <li>PyGithub - GitHub API wrapper</li>
+                            <li>View full catalog in documentation</li>
+                        </ul>
+                    </div>
+                    <div class="tool-category">
+                        <h3>Premium/Enterprise Options</h3>
+                        <ul>
+                            <li>Bloomberg API - $2000+/month</li>
+                            <li>NewsAPI Pro - $449/month</li>
+                            <li>Twitter API Pro - $100/month</li>
+                            <li>Brandwatch - $800+/month</li>
+                            <li>Alpha Vantage Premium - $50-600/month</li>
+                            <li>Refinitiv Reuters - $1500+/month</li>
+                            <li>Web of Science - Institutional</li>
+                            <li>And dozens more enterprise solutions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="expanded_tools.html" class="btn btn-primary">View Complete Tool Catalog (200+ Tools)</a>
+                    <a href="specialized_scrapers.html" class="btn btn-secondary">Browse Specialized Scrapers (150+ Repos)</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs" class="documentation">
+            <div class="container">
+                <h2>Getting Started</h2>
+                <div class="docs-content">
+                    <div class="doc-section">
+                        <h3>Installation</h3>
+                        <pre><code>git clone https://github.com/CrazyDubya/botsy.git
+cd botsy
+pip install -r requirements.txt</code></pre>
+                    </div>
+                    <div class="doc-section">
+                        <h3>Basic Usage</h3>
+                        <pre><code># Run a specific category
+python main.py --category news
+
+# Run all categories
+python main.py --all
+
+# Show available tools
+python main.py --tools</code></pre>
+                    </div>
+                    <div class="doc-section">
+                        <h3>Configuration</h3>
+                        <pre><code># Copy environment template
+cp .env.example .env
+
+# Add your API keys
+NEWS_API_KEY=your_key_here
+GITHUB_TOKEN=your_token_here</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Botsy Framework. Open source project for educational purposes.</p>
+            <div class="footer-links">
+                <a href="https://github.com/CrazyDubya/botsy">GitHub</a>
+                <a href="https://github.com/CrazyDubya/botsy/issues">Issues</a>
+                <a href="https://github.com/CrazyDubya/botsy/blob/main/LICENSE">License</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

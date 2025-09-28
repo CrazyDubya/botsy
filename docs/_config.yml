@@ -1,0 +1,20 @@
+title: "Botsy - Automated Information Scraping Framework"
+description: "A comprehensive framework for automated data collection across ten key categories using the best free tools and APIs"
+url: "https://crazydubya.github.io"
+baseurl: "/botsy"
+
+# GitHub Pages settings
+plugins:
+  - jekyll-default-layout
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-titles-from-headings
+
+# Theme
+theme: minima
+
+# Exclude files
+exclude:
+  - README.md
+  - LICENSE
+  - .gitignore
