@@ -1,3 +1,8 @@
+---
+title: "Comprehensive Tools and APIs Reference - Expanded"
+layout: default
+---
+
 # Comprehensive Tools and APIs Reference - Expanded
 
 This document provides an exhaustive list of tools, APIs, and specialized scrapers for each information category, including free, freemium, and paid options.

@@ -1,3 +1,8 @@
+---
+title: "Specialized Scrapers from Open Source Repositories"  
+layout: default
+---
+
 # Specialized Scrapers from Open Source Repositories
 
 This document catalogs specialized scraping tools and libraries available in open source repositories, organized by category and use case.

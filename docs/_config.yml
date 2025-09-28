@@ -10,11 +10,19 @@ plugins:
   - jekyll-readme-index
   - jekyll-titles-from-headings
 
-# Theme
-theme: minima
+# Build settings
+markdown: kramdown
+highlighter: rouge
 
-# Exclude files
+# Exclude files from processing
 exclude:
   - README.md
   - LICENSE
   - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

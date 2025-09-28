@@ -1,3 +1,8 @@
+---
+title: "Information Scraping Categories"
+layout: default
+---
+
 # Information Scraping Categories
 
 ## Overview
