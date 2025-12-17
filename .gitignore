@@ -54,4 +54,4 @@ Thumbs.db
 
 # Project specific
 scraped_data/
-output/
+output/*.sqlite
